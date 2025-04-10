@@ -1,0 +1,15 @@
+# Arquivos do Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+bin/
+obj/
+
+# Configurações do sistema
+*.db
+*.log
+
+# Outros
+*.vscode/
