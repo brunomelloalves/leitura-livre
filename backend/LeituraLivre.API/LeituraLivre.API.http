@@ -1,0 +1,6 @@
+@LeituraLivre.API_HostAddress = http://localhost:5049
+
+GET {{LeituraLivre.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
