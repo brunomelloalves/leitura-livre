@@ -22,6 +22,7 @@ dotnet restore
 dotnet run
 
 2. Acesse a pasta `frontend`:
+
 cd frontend
 npm install
 ng serve
