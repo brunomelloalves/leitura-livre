@@ -17,12 +17,12 @@ Com ela, os usuários podem cadastrar livros, visualizar obras disponíveis e so
 
 1. Acesse a pasta `backend`:
 
-cd backend
-dotnet restore
-dotnet run
+- cd backend
+- dotnet restore
+- dotnet run
 
 2. Acesse a pasta `frontend`:
 
-cd frontend
-npm install
-ng serve
+- cd frontend
+- npm install
+- ng serve
