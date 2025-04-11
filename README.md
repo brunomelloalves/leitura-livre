@@ -9,6 +9,7 @@ Com ela, os usuários podem cadastrar livros, visualizar obras disponíveis e so
 
 - 🔧 **Backend:** ASP.NET Core (.NET 8)
 - 🎨 **Frontend:** Angular 18
+- Docker Desktop
 
 
 ## 🛠️ Como rodar o projeto
@@ -17,10 +18,11 @@ Com ela, os usuários podem cadastrar livros, visualizar obras disponíveis e so
 
 1. Acesse a pasta `backend`:
 
-- cd backend
-- dotnet restore
-- dotnet run
+- docker compose up --build -d
+- o sistema irá carregar o backend e o banco de dados a para acessar o banco de dados usuario: leitura senha: admin
 
+
+pgAdmin (opcional, para visualizar o banco)
 2. Acesse a pasta `frontend`:
 
 - cd frontend
