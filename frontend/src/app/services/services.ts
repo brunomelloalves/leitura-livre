@@ -11,6 +11,8 @@ export class Service {
 
   constructor(private http: HttpClient) {}
 
+// Usuario
+
   salvarUsuario(usuario: UsuarioDto): Observable<UsuarioDto> {
     return this.http.post<UsuarioDto>(this.apiUrl + '/api/usuario', usuario);
   }
@@ -20,6 +22,14 @@ export class Service {
   }
 
   atualizarUsuario(id: number, usuario: UsuarioDto): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}`, usuario);
+     return this.http.put<void>(`${this.apiUrl}/${id}`, usuario);
   }
+
+  // Livro
+
+  salvarLivro(formData: FormData): Observable<any> {
+    console.log('FormData:', formData); // Adicione este log para verificar o conteúdo do FormData
+    return this.http.post(this.apiUrl + '/api/livro', formData);
+  }
+  
 }

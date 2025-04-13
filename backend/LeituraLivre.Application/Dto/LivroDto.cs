@@ -1,4 +1,6 @@
-﻿namespace LeituraLivre.Application.DTOs;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace LeituraLivre.Application.DTOs;
 
 public class LivroDto
 {
@@ -8,4 +10,5 @@ public class LivroDto
     public int AnoPublicacao { get; set; }
     public string Categoria { get; set; } = string.Empty;
     public bool Disponivel { get; set; }
+    public IFormFile? Capa { get; set; }
 }

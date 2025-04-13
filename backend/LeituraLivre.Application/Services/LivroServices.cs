@@ -48,20 +48,48 @@ namespace LeituraLivre.Application.Services
 
         public async Task<LivroDto> AdicionarAsync(LivroDto dto)
         {
+            int? capaId = null;
+
+            if (dto.Capa != null && dto.Capa.Length > 0)
+            {
+                using var ms = new MemoryStream();
+                await dto.Capa.CopyToAsync(ms);
+
+                var arquivo = new Arquivo
+                {
+                    Nome = dto.Capa.FileName,
+                    TipoMime = dto.Capa.ContentType,
+                    Conteudo = ms.ToArray()
+                };
+
+                _context.Arquivos.Add(arquivo);
+                await _context.SaveChangesAsync();
+
+                capaId = arquivo.Id;
+            }
+
             var livro = new Livro
             {
                 Titulo = dto.Titulo,
                 Autor = dto.Autor,
                 AnoPublicacao = dto.AnoPublicacao,
                 Categoria = dto.Categoria,
-                Disponivel = dto.Disponivel
+                Disponivel = dto.Disponivel,
+                CapaId = capaId
             };
 
             _context.Livros.Add(livro);
             await _context.SaveChangesAsync();
 
-            dto.Id = livro.Id;
-            return dto;
+            return new LivroDto
+            {
+                Id = livro.Id,
+                Titulo = livro.Titulo,
+                Autor = livro.Autor,
+                AnoPublicacao = livro.AnoPublicacao,
+                Categoria = livro.Categoria,
+                Disponivel = livro.Disponivel
+            };
         }
 
         public async Task<bool> AtualizarAsync(int id, LivroDto dto)
