@@ -5,4 +5,5 @@ export interface UsuarioDto {
     email: string;
     nrImovel: number;
     senha: string;
+    aprovado: boolean;
   }

@@ -1,0 +1,47 @@
+<div class="usuario-lista-container">
+    <div class="lista-wrapper">
+      <h2>Lista de Usuários</h2>
+  
+      <div *ngIf="carregando" class="loading">Carregando usuários...</div>
+  
+      <table class="table table-striped mt-3" *ngIf="!carregando && usuarios.length">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Nº Imóvel</th>
+            <th>Aprovado</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefone }}</td>
+            <td>{{ usuario.nrImovel }}</td>
+            <td>
+              <span [class]="usuario.aprovado ? 'text-success' : 'text-danger'">
+                {{ usuario.aprovado ? 'Sim' : 'Não' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-sm" 
+                      [class.btn-success]="!usuario.aprovado" 
+                      [class.btn-danger]="usuario.aprovado"
+                      (click)="alternarAprovacao(usuario)">
+                {{ usuario.aprovado ? 'Reprovar' : 'Aprovar' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+  
+      <div *ngIf="!carregando && usuarios.length === 0" class="text-muted">
+        Nenhum usuário encontrado.
+      </div>
+    </div>
+  </div>
+  

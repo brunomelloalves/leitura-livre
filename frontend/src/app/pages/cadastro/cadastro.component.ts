@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Service } from '../services/services';
+import { Service } from '../../services/services';
 
 @Component({
   selector: 'app-cadastro',
@@ -41,7 +41,8 @@ export class CadastroComponent {
       telefone,
       email,
       nrImovel: +numeroImovel,
-      senha
+      senha,
+      aprovado: false
     };
   
 console.log('form', usuarioPayload)

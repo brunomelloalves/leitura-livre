@@ -24,7 +24,8 @@ namespace LeituraLivre.Application.Services
                     Nome = u.Nome,
                     Telefone = u.Telefone,
                     Email = u.Email,
-                    NrImovel = u.NrImovel
+                    NrImovel = u.NrImovel,
+                    Aprovado = u.Aprovado
                 })
                 .ToListAsync();
         }
@@ -40,7 +41,8 @@ namespace LeituraLivre.Application.Services
                 Nome = usuario.Nome,
                 Telefone = usuario.Telefone,
                 Email = usuario.Email,
-                NrImovel = usuario.NrImovel
+                NrImovel = usuario.NrImovel,
+                Aprovado = usuario.Aprovado
             };
         }
 
@@ -52,7 +54,8 @@ namespace LeituraLivre.Application.Services
                 Telefone = dto.Telefone,
                 Email = dto.Email,
                 NrImovel = dto.NrImovel,
-                Senha = dto.Senha
+                Senha = dto.Senha,
+                Aprovado = dto.Aprovado
             };
 
             _context.Usuario.Add(usuario);
@@ -71,6 +74,7 @@ namespace LeituraLivre.Application.Services
             usuario.Telefone = dto.Telefone;
             usuario.Email = dto.Email;
             usuario.NrImovel = dto.NrImovel;
+            usuario.Aprovado = dto.Aprovado;
             if (!string.IsNullOrWhiteSpace(dto.Senha))
                 usuario.Senha = dto.Senha;
 

@@ -18,8 +18,8 @@ public class UsuarioController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<UsuarioDto>>> Get()
     {
-        var livros = await _usuarioService.ObterTodosAsync();
-        return Ok(livros);
+        var usuarios = await _usuarioService.ObterTodosAsync();
+        return Ok(usuarios);
     }
 
     [HttpGet("{id}")]
@@ -37,7 +37,7 @@ public class UsuarioController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = novo.Id }, novo);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("/{id}")]
     public async Task<IActionResult> Put(int id, UsuarioDto dto)
     {
         var atualizado = await _usuarioService.AtualizarAsync(id, dto);

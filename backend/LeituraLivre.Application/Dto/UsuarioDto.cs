@@ -10,6 +10,7 @@ public class UsuarioDto
     public string? Email { get; set; }
     public int NrImovel { get; set; }
     public string? Senha { get; set; }
+    public bool Aprovado { get; set; }
 
     public ICollection<EmprestimoDto> Emprestimos { get; set; } = new List<EmprestimoDto>();
 }
