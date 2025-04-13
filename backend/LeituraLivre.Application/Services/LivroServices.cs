@@ -1,4 +1,5 @@
-﻿using LeituraLivre.Application.DTOs;
+﻿using LeituraLivre.Application.Dto;
+using LeituraLivre.Application.DTOs;
 using LeituraLivre.Application.Interfaces;
 using LeituraLivre.Domain.Entities;
 using LeituraLivre.Infra.Data;
@@ -15,20 +16,23 @@ namespace LeituraLivre.Application.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<LivroDto>> ObterTodosAsync()
+        public async Task<IEnumerable<LivroListagemDto>> ObterTodosAsync()
         {
             return await _context.Livros
-                .Select(l => new LivroDto
+                .Include(l => l.Capa)
+                .Select(l => new LivroListagemDto
                 {
                     Id = l.Id,
                     Titulo = l.Titulo,
                     Autor = l.Autor,
                     AnoPublicacao = l.AnoPublicacao,
                     Categoria = l.Categoria,
-                    Disponivel = l.Disponivel
+                    Disponivel = l.Disponivel,
+                    CapaBase64 = l.Capa != null ? Convert.ToBase64String(l.Capa.Conteudo) : null
                 })
                 .ToListAsync();
         }
+
 
         public async Task<LivroDto?> ObterPorIdAsync(int id)
         {

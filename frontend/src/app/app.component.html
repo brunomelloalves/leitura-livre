@@ -15,8 +15,22 @@
         <li class="nav-item">
           <button class="nav-link fs-5 btn btn-link" routerLink="/saiba-mais" routerLinkActive="active">Saiba mais</button>
         </li>
-        <li class="nav-item">
-          <button class="nav-link fs-5 btn btn-link" routerLink="/usuarios-listagem" routerLinkActive="active">Gestão</button>
+        <li class="nav-item dropdown">
+          <button class="nav-link fs-5 btn btn-link dropdown-toggle"
+                  type="button"
+                  id="gestaoDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            Gestão
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="gestaoDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/usuarios-listagem" routerLinkActive="active">Gestão Usuários</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/livros-listagem" routerLinkActive="active">Gestão Livros</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

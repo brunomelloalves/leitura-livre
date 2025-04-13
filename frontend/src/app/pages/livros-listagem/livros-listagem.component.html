@@ -1,0 +1,47 @@
+<div class="usuario-lista-container">
+    <div class="lista-wrapper">
+      <h2>Livros</h2>
+  
+      <div *ngIf="carregando" class="loading">Carregando livros...</div>
+  
+      <table class="table table-striped mt-3" *ngIf="!carregando && livros.length">
+        <thead>
+          <tr>
+            <th>Capa</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Categoria</th>
+            <th>Disponível</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let livro of livros">
+            <td>
+              <img *ngIf="livro.capaBase64" 
+              [src]="'data:image/' + getImageType(livro.capaBase64) + ';base64,' + livro.capaBase64"
+
+                   alt="Capa do livro" 
+                   class="img-thumbnail" 
+                   style="width: 50px; height: auto;" />
+              <span *ngIf="!livro.capaBase64" class="text-muted">Sem capa</span>
+            </td>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.anoPublicacao }}</td>
+            <td>{{ livro.categoria }}</td>
+            <td>
+              <span [class]="livro.disponivel ? 'text-success' : 'text-danger'">
+                {{ livro.disponivel ? 'Sim' : 'Não' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div *ngIf="!carregando && livros.length === 0" class="text-muted">
+        Nenhum livro encontrado.
+      </div>
+    </div>
+  </div>
+  
