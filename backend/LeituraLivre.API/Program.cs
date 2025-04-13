@@ -1,26 +1,38 @@
-using LeituraLivre.Application.Interfaces;
+﻿using LeituraLivre.Application.Interfaces;
 using LeituraLivre.Application.Services;
 using LeituraLivre.Infra.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ⬇️ Adiciona a política de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers();
 
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ILivroService, LivroService>();
-
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//configurando o acesso ao banco de dados
+// Banco de dados PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ⬇️ Aplica o CORS antes de tudo
+app.UseCors();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -28,8 +40,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthorization();
 
-//Executa as migrations quando inicia
+// Executa as migrations
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -37,10 +50,4 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.MapControllers();
-
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

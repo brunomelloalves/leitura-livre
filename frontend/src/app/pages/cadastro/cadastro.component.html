@@ -1,46 +1,49 @@
 <div class="container-fluid p-0 m-0 overflow-hidden">
-    <div class="row g-0" style="height: calc(100vh - 116px);">
-
-        <div class="col-md-6 bg-primary text-white d-flex flex-column justify-content-center align-items-start p-5">
-        <h2 class="fw-bold mb-4">Cadastro</h2>
-  
-        <form #cadastroForm="ngForm" (ngSubmit)="enviarFormulario()" class="w-100" style="max-width: 400px;">
-            <div class="mb-3">
-              <label for="nome" class="form-label">Nome</label>
-              <input type="text" id="nome" name="nome" class="form-control form-control-sm" [(ngModel)]="cliente.nome" required />
-            </div>
-          
-            <input type="tel" id="telefone" name="telefone" class="form-control form-control-sm" [(ngModel)]="cliente.telefone" required maxlength="15"
-            placeholder="(67) 99999-9999" (input)="formatarTelefone($event)" />
-          
-          
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" name="email" class="form-control form-control-sm"
-                     [(ngModel)]="cliente.email" required placeholder="seu@email.com" />
-            </div>
-          
-            <div class="mb-4">
-              <label for="numeroImovel" class="form-label">Número do Imóvel</label>
-              <input type="text" id="numeroImovel" name="numeroImovel" class="form-control form-control-sm"
-                     [(ngModel)]="cliente.numeroImovel" required />
-            </div>
-          
-            <button type="submit" class="btn btn-light text-primary fw-bold px-4 py-2 fs-6">CADASTRAR</button>
-          </form>
-          
-      </div>
-  
-      <div class="col-md-6 bg-light d-flex flex-column align-items-center justify-content-center p-4">
-        <div class="rounded-circle d-flex align-items-center justify-content-center mb-4"
-             style="width: 100px; height: 100px;">
-          <img src="/img/livro.png" alt="Ícone de livro" style="width: 80px;" />
+  <div class="row g-0" style="height: calc(100vh - 116px);">
+    <div class="col-md-6 bg-primary text-white d-flex flex-column justify-content-center align-items-start p-5">
+      <h2 class="fw-bold mb-4">Cadastro</h2>
+      <form #cadastroForm="ngForm" (ngSubmit)="enviarFormulario()" class="w-100" style="max-width: 400px;">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" id="nome" name="nome" class="form-control form-control-sm" [(ngModel)]="cliente.nome" required />
         </div>
-        <img src="/img/home.png"
-             alt="Estante de livros"
-             class="img-fluid rounded shadow"
-             style="max-height: 71vh; max-width: 90%;" />
+        <div class="mb-3">
+          <label for="nome" class="form-label">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" class="form-control form-control-sm" [(ngModel)]="cliente.telefone" required maxlength="15"
+                 placeholder="(67) 99999-9999" (input)="formatarTelefone($event)" />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control form-control-sm"
+                 [(ngModel)]="cliente.email" required placeholder="seu@email.com" />
+        </div>
+        <div class="mb-3">
+          <label for="numeroImovel" class="form-label">Número do Imóvel</label>
+          <input type="text" id="numeroImovel" name="numeroImovel" class="form-control form-control-sm"
+                 [(ngModel)]="cliente.numeroImovel" required />
+        </div>
+        <div class="mb-3">
+          <label for="senha" class="form-label">Senha</label>
+          <input type="text" id="senha" name="senha" class="form-control form-control-sm"
+                 [(ngModel)]="cliente.senha" required />
+        </div>
+        <div class="mb-3">
+          <label for="senhaConfirma" class="form-label">Confirme sua senha</label>
+          <input type="text" id="senhaConfirma" name="senhaConfirma" class="form-control form-control-sm"
+                 [(ngModel)]="cliente.senhaConfirma" required />
+        </div>
+        <button type="submit" class="btn btn-light text-primary fw-bold px-4 py-2 fs-6">CADASTRAR</button>
+      </form>
+    </div>
+    <div class="col-md-6 bg-light d-flex flex-column align-items-center justify-content-center p-4">
+      <div class="rounded-circle d-flex align-items-center justify-content-center mb-4"
+           style="width: 100px; height: 100px;">
+        <img src="/img/livro.png" alt="Ícone de livro" style="width: 80px;" />
       </div>
+      <img src="/img/home.png"
+           alt="Estante de livros"
+           class="img-fluid rounded shadow"
+           style="max-height: 71vh; max-width: 90%;" />
     </div>
   </div>
-  
+</div>

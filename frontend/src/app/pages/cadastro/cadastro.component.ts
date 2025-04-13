@@ -1,38 +1,71 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Service } from '../services/services';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.scss']
+  styleUrls: ['./cadastro.component.scss'],
+  providers: [Service]
 })
 export class CadastroComponent {
   cliente = {
     nome: '',
     telefone: '',
     email: '',
-    numeroImovel: ''
+    numeroImovel: '',
+    senha: '',
+    senhaConfirma: ''
   };
 
+  constructor(private service: Service) {}
+
   enviarFormulario() {
-    if(!this.cliente.nome || !this.cliente.telefone || !this.cliente.email || !this.cliente.numeroImovel) {
+    const { nome, telefone, email, numeroImovel, senha, senhaConfirma } = this.cliente;
+  
+    if (!nome || !telefone || !email || !numeroImovel || !senha || !senhaConfirma) {
       alert('Por favor, preencha todos os campos. São obrigatórios.');
       return;
     }
-      
-    alert('Cadastro enviado com sucesso!');
+  
+    if (senha !== senhaConfirma) {
+      alert('As senhas digitadas não são iguais.');
+      return;
+    }
+  
+    const usuarioPayload = {
+      nome,
+      telefone,
+      email,
+      nrImovel: +numeroImovel,
+      senha
+    };
+  
+console.log('form', usuarioPayload)
 
-    this.limparFormulario();
+    this.service.salvarUsuario(usuarioPayload).subscribe({
+      next: () => {
+        alert('Cadastro enviado com sucesso!');
+        this.limparFormulario();
+      },
+      error: (error) => {
+        console.error('Erro ao salvar usuário:', error);
+        alert('Ocorreu um erro ao salvar o cadastro.');
+      }
+    });
   }
+  
 
   limparFormulario() {
     this.cliente.nome = ''; 
     this.cliente.telefone = '';
     this.cliente.email = '';
     this.cliente.numeroImovel = '';
+    this.cliente.senha = '';
+    this.cliente.senhaConfirma = '';
   }
 
   formatarTelefone(event: any) {
