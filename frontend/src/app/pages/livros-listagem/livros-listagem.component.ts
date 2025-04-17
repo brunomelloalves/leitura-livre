@@ -19,7 +19,6 @@ export class LivrosListagemComponent implements OnInit {
   ngOnInit(): void {
     this.service.obterTodosLivros().subscribe({
       next: (res) => {
-        console.log('res', res),
         this.livros = res;
         this.carregando = false;
       },

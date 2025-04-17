@@ -15,7 +15,10 @@
         <li class="nav-item">
           <button class="nav-link fs-5 btn btn-link" routerLink="/saiba-mais" routerLinkActive="active">Saiba mais</button>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item" *ngIf="!isAdmin">
+          <button class="nav-link fs-5 btn btn-link" (click)="abrirLoginModal()">Login</button>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isAdmin">
           <button class="nav-link fs-5 btn btn-link dropdown-toggle"
                   type="button"
                   id="gestaoDropdown"
@@ -32,10 +35,10 @@
             </li>
           </ul>
         </li>
+        
       </ul>
     </div>
   </div>
 </nav>
-
-
+<app-login-modal #loginModal></app-login-modal>
 <router-outlet></router-outlet>

@@ -1,0 +1,25 @@
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login Administrativo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Usuário</label>
+            <input type="usuario" class="form-control" [(ngModel)]="usuario" />
+          </div>
+          <div class="mb-3">
+            <label>Senha</label>
+            <input type="password" class="form-control" [(ngModel)]="senha" />
+          </div>
+          <div *ngIf="erro" class="text-danger">Credenciais inválidas</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="login()">Entrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
