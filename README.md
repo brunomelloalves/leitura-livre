@@ -28,3 +28,12 @@ pgAdmin (opcional, para visualizar o banco)
 - cd frontend
 - npm install
 - ng serve
+
+## Atenção - Para ser admin por enquanto tem que ser via banco  
+SELECT "Id", "Nome", "Telefone", "Email", "NrImovel", "Senha", "Aprovado", "NomeUsuario", "Admin"
+	FROM public."Usuarios";
+
+UPDATE public."Usuarios" 
+SET "Aprovado" = true, 
+    "Admin" = true 
+WHERE "Id" = 3;
