@@ -14,8 +14,10 @@ public class UsuarioMap : IEntityTypeConfiguration<Usuario>
         builder.Property(u => u.Telefone).HasMaxLength(20);
         builder.Property(u => u.Email).HasMaxLength(150).IsRequired();
         builder.Property(u => u.NrImovel).IsRequired();
+        builder.Property(u => u.NomeUsuario).IsRequired().HasMaxLength(30);
         builder.Property(u => u.Senha).HasMaxLength(100).IsRequired();
         builder.Property(u => u.Aprovado);
+        builder.Property(u => u.Admin).HasDefaultValue(false);
 
 
         builder.HasMany(u => u.Emprestimos)

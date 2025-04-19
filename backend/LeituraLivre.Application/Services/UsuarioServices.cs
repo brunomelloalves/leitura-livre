@@ -54,8 +54,10 @@ namespace LeituraLivre.Application.Services
                 Telefone = dto.Telefone,
                 Email = dto.Email,
                 NrImovel = dto.NrImovel,
+                NomeUsuario = dto.NomeUsuario,
                 Senha = dto.Senha,
-                Aprovado = dto.Aprovado
+                Aprovado = dto.Aprovado,
+                Admin = dto.Admin
             };
 
             _context.Usuario.Add(usuario);
@@ -90,6 +92,25 @@ namespace LeituraLivre.Application.Services
             _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        public async Task<UsuarioDto> Login(string nomeUsuario, string senha)
+        {
+            var usuario = await _context.Usuario.FirstAsync(u => u.NomeUsuario == nomeUsuario);
+            if (usuario == null) return null;
+
+            return new UsuarioDto
+            {
+                Id = usuario.Id,
+                Nome = usuario.Nome,
+                Telefone = usuario.Telefone,
+                Email = usuario.Email,
+                NrImovel = usuario.NrImovel,
+                Aprovado = usuario.Aprovado,
+                Senha = usuario.Senha,
+                Admin = usuario.Admin,
+                NomeUsuario = usuario.NomeUsuario
+            };
         }
     }
 }

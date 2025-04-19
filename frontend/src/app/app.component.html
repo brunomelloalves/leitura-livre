@@ -10,32 +10,23 @@
           <button class="nav-link fs-5 btn btn-link" routerLink="/cadastro" routerLinkActive="active">Cadastre-se</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" routerLink="/livro-cadastro">Cadastro de Livros</a>
+          <a class="nav-link fs-5" routerLink="/livro-cadastro" *ngIf="isLoggedIn">Cadastro de Livros</a>
         </li>
         <li class="nav-item">
           <button class="nav-link fs-5 btn btn-link" routerLink="/saiba-mais" routerLinkActive="active">Saiba mais</button>
         </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <button class="nav-link fs-5 btn btn-link" routerLink="/usuarios-listagem" routerLinkActive="active">Gestão Usuários</button>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin || isLoggedIn">
+          <button class="nav-link fs-5 btn btn-link" routerLink="/livros-listagem" routerLinkActive="active">Gestão Livros</button>
+        </li>
         <li class="nav-item" *ngIf="!isAdmin">
           <button class="nav-link fs-5 btn btn-link" (click)="abrirLoginModal()">Login</button>
         </li>
-        <li class="nav-item dropdown" *ngIf="isAdmin">
-          <button class="nav-link fs-5 btn btn-link dropdown-toggle"
-                  type="button"
-                  id="gestaoDropdown"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
-            Gestão
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="gestaoDropdown">
-            <li>
-              <a class="dropdown-item" routerLink="/usuarios-listagem" routerLinkActive="active">Gestão Usuários</a>
-            </li>
-            <li>
-              <a class="dropdown-item" routerLink="/livros-listagem" routerLinkActive="active">Gestão Livros</a>
-            </li>
-          </ul>
+        <li class="nav-item" *ngIf="isAdmin">
+          <button class="nav-link fs-5 btn btn-link" (click)="deslogar()">Logout</button>
         </li>
-        
       </ul>
     </div>
   </div>

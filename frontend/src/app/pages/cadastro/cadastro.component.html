@@ -23,13 +23,17 @@
                  [(ngModel)]="cliente.numeroImovel" required />
         </div>
         <div class="mb-3">
+          <label for="nomeUsuario">Nome de Usuário</label>
+          <input type="text" id="nomeUsuario" class="form-control" [(ngModel)]="cliente.nomeUsuario" name="nomeUsuario" required>
+        </div>
+        <div class="mb-3">
           <label for="senha" class="form-label">Senha</label>
-          <input type="text" id="senha" name="senha" class="form-control form-control-sm"
+          <input type="password" id="senha" name="senha" class="form-control form-control-sm"
                  [(ngModel)]="cliente.senha" required />
         </div>
         <div class="mb-3">
           <label for="senhaConfirma" class="form-label">Confirme sua senha</label>
-          <input type="text" id="senhaConfirma" name="senhaConfirma" class="form-control form-control-sm"
+          <input type="password" id="senhaConfirma" name="senhaConfirma" class="form-control form-control-sm"
                  [(ngModel)]="cliente.senhaConfirma" required />
         </div>
         <button type="submit" class="btn btn-light text-primary fw-bold px-4 py-2 fs-6">CADASTRAR</button>

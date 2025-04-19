@@ -17,6 +17,7 @@ export class CadastroComponent {
     telefone: '',
     email: '',
     numeroImovel: '',
+    nomeUsuario:'',
     senha: '',
     senhaConfirma: ''
   };
@@ -24,9 +25,9 @@ export class CadastroComponent {
   constructor(private service: Service) {}
 
   enviarFormulario() {
-    const { nome, telefone, email, numeroImovel, senha, senhaConfirma } = this.cliente;
+    const { nome, telefone, email, numeroImovel, senha, nomeUsuario, senhaConfirma } = this.cliente;
   
-    if (!nome || !telefone || !email || !numeroImovel || !senha || !senhaConfirma) {
+    if (!nome || !telefone || !email || !numeroImovel || !senha || !senhaConfirma || !nomeUsuario) {
       alert('Por favor, preencha todos os campos. São obrigatórios.');
       return;
     }
@@ -41,11 +42,11 @@ export class CadastroComponent {
       telefone,
       email,
       nrImovel: +numeroImovel,
+      nomeUsuario,
       senha,
       aprovado: false
     };
   
-console.log('form', usuarioPayload)
 
     this.service.salvarUsuario(usuarioPayload).subscribe({
       next: () => {
@@ -58,7 +59,6 @@ console.log('form', usuarioPayload)
       }
     });
   }
-  
 
   limparFormulario() {
     this.cliente.nome = ''; 

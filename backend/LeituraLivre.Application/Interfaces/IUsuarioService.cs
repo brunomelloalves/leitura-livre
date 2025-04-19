@@ -11,4 +11,5 @@ public interface IUsuarioService
     Task<UsuarioDto> AdicionarAsync(UsuarioDto dto);
     Task<bool> AtualizarAsync(int id, UsuarioDto dto);
     Task<bool> RemoverAsync(int id);
+    Task<UsuarioDto> Login(string nomeUsuario, string senha);
 }

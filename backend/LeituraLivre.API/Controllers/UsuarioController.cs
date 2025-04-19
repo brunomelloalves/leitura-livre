@@ -1,6 +1,9 @@
-﻿using LeituraLivre.Application.DTOs;
+﻿using LeituraLivre.Application.Dto;
+using LeituraLivre.Application.DTOs;
 using LeituraLivre.Application.Interfaces;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeituraLivre.API.Controllers;
 
@@ -13,6 +16,25 @@ public class UsuarioController : ControllerBase
     public UsuarioController(IUsuarioService usuarioService)
     {
         _usuarioService = usuarioService;
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginDto request)
+    {
+        var usuario = await _usuarioService.Login(request.NomeUsuario, request.Senha);
+
+        if (usuario == null)
+            return Unauthorized(new { mensagem = "Usuário ou senha inválidos" });
+
+        if(usuario.Senha != request.Senha)
+            return Unauthorized(new { mensagem = "Usuário ou senha inválidos" });
+
+        return Ok(new
+        {
+            nome = usuario.Nome,
+            nomeUsuario = usuario.NomeUsuario,
+            isAdmin = usuario.Admin
+        });
     }
 
     [HttpGet]

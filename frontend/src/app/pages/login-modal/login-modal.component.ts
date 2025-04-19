@@ -31,12 +31,13 @@ export class LoginModalComponent implements AfterViewInit {
   }
 
   login() {
-    const sucesso = this.auth.login(this.usuario, this.senha);
-    this.erro = !sucesso;
-
-    if (sucesso) {
-      this.modalInstance?.hide();
-    }
+    this.auth.login(this.usuario, this.senha).subscribe((sucesso) => {
+      this.erro = !sucesso;
+  
+      if (sucesso) {
+        this.modalInstance?.hide();
+      }
+    });
   }
 }
 

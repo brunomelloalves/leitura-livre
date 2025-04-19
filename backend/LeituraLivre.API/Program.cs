@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ⬇️ Adiciona a política de CORS
+// Adiciona a política de CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -30,7 +30,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-// ⬇️ Aplica o CORS antes de tudo
+// Aplica o CORS antes de tudo
 app.UseCors();
 
 if (app.Environment.IsDevelopment())
