@@ -31,7 +31,7 @@ export class LivrosListagemComponent implements OnInit {
   
   getImageType(base64: string | null): string {
     if (!base64) return 'jpeg';
-    return base64.startsWith('/9j/') ? 'jpeg' : 'png'; // exemplo simples
+    return base64.startsWith('/9j/') ? 'jpeg' : 'png';
   }
   
 }

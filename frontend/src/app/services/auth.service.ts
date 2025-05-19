@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   private isAdminSubject = new BehaviorSubject<boolean>(false);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
 
-  private apiUrl = 'http://localhost:5049';
+  private apiUrl = environment.apiUrl;
 
   get isAdmin$() {
     return this.isAdminSubject.asObservable();
@@ -29,7 +30,7 @@ export class AuthService {
   }
 
   login(usuario: string, senha: string): Observable<boolean> {
-    return this.http.post<any>(this.apiUrl + '/api/usuario/login', {
+    return this.http.post<any>(this.apiUrl + '/usuario/login', {
       nomeUsuario: usuario,
       senha: senha
     }).pipe(
@@ -40,6 +41,7 @@ export class AuthService {
         localStorage.setItem('isAdmin', res.isAdmin.toString());
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('usuario', res.nomeUsuario);
+        localStorage.setItem('id', res.id);
       }),
       catchError(() => {
         return of(false);

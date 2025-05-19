@@ -77,6 +77,8 @@ namespace LeituraLivre.Application.Services
             usuario.Email = dto.Email;
             usuario.NrImovel = dto.NrImovel;
             usuario.Aprovado = dto.Aprovado;
+            usuario.Admin = dto.Admin;
+            
             if (!string.IsNullOrWhiteSpace(dto.Senha))
                 usuario.Senha = dto.Senha;
 

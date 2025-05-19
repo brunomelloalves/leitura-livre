@@ -13,6 +13,11 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "leitura"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build:
@@ -25,7 +30,9 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=leitura_livre;Username=leitura;Password=admin
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    restart: always
 
 volumes:
   postgres_data:

@@ -31,6 +31,7 @@ public class UsuarioController : ControllerBase
 
         return Ok(new
         {
+            id = usuario.Id,
             nome = usuario.Nome,
             nomeUsuario = usuario.NomeUsuario,
             isAdmin = usuario.Admin
